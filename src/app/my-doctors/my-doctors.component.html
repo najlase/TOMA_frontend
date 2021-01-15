@@ -1,0 +1,13 @@
+<div style="margin-top: 50px;">
+  <h1 *ngIf="doctors.length == 0" style="color: gray;text-align: center;"> No Results Found </h1>
+  <div *ngFor="let doctor of doctors; let i = index" class="doctor">
+    <img [src]="doctor.img" style="height: 300px;
+    margin-left: 50%;
+    transform: translateX(-50%);"/>
+    <div style="padding-left: 20px" class="doctor-info">
+      <div><h5 style="display: inline-block">Name: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.firstName}} {{doctor.lastName}}</h5></div>
+      <div><h5 style="display: inline-block">Specialty: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.specialty}}</h5></div>
+      <div><h5 style="display: inline-block">#Patients: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.patients.length}}</h5></div>
+    </div>
+  </div>
+</div>

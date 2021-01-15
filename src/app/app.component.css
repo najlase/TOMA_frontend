@@ -1,0 +1,29 @@
+.navbar {
+  padding: 0;
+  background-color: #2987de;
+}
+
+.navbar-brand {
+  padding: 0px; /* firefox bug fix */
+}
+
+.navbar-brand>img {
+  height: 100%;
+  padding: 0;
+  width: 217px;
+}
+
+.nav-item > a {
+  color:white;
+}
+
+.navbar-item {
+  margin-right: 30px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navbar-item.active{
+  border-bottom: 2px solid white;
+}

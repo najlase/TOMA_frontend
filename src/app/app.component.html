@@ -1,0 +1,32 @@
+<nav *ngIf="authService.user" class="navbar navbar-expand-lg border-bottom" style="height: 70px;">
+  <a class="navbar-brand" href="#" style="color: white;color: white;font-family: cursive;font-size: 30px;">
+    <img src="../../../../assets/images/logo.png" style="height: 60px; width: auto; margin-left: 50px;" alt="Home Page" id="open-menu"> TOMA
+  </a>
+
+
+  <div style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/dashboard']" fragment="education">
+    Dashboard
+  </div>
+
+  <div *ngIf="authService.user.role === 'Patient'" class="navbar-item" routerLinkActive="active" [routerLink]="['/my-doctors']" fragment="education">
+    My Doctors
+  </div>
+
+  <div *ngIf="authService.user.role === 'Patientsh'" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctors']" fragment="education">
+    All Doctors
+  </div>
+
+  <div *ngIf="authService.user.role === 'Doctor'" class="navbar-item" routerLinkActive="active" [routerLink]="['/my-patients']" fragment="education">
+    My Patients
+  </div>
+
+  <div class="navbar-item" routerLinkActive="active" [routerLink]="['/profile']" fragment="education">
+    Profile
+  </div>
+
+  <div style="position: absolute; right: 0px; padding-left: 30px; height: 100%; margin-right: 0px; padding-top: 17px; padding-right: 30px; background: #1d6fbb;" class="navbar-item" (click)="authService.logout()">
+    Log out
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

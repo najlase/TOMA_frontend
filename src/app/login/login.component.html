@@ -1,0 +1,44 @@
+<div class="content">
+  <div >
+    <div class="row" style="width: 100%;">
+      <div class="col-md-7">
+        <img src="../../assets/images/login-img.png" alt="Image" class="img-fluid">
+      </div>
+      <div class="col-md-4 contents">
+        <div class="row justify-content-center" style="margin-top: 50%;transform: translateY(-50%);">
+          <div class="col-md-8">
+            <div style="position: relative; margin-bottom: 50px;">
+              <img style="position: absolute; top: 0px" height="100px" src="assets/images/logo.jpg"/> <span style="margin-left: 130px; font-size: 65px;color: #2987de;font-weight: bold;font-family: fantasy;">TOMA</span>
+            </div>
+            <div class="mb-4">
+              <h3>Sign In</h3>
+            </div>
+              <div class="form-group first">
+                <label *ngIf="email.length === 0" for="email">Email</label>
+                <input type="email" class="form-control" [(ngModel)]="email" id="email">
+
+              </div>
+              <div class="form-group last mb-4">
+                <label *ngIf="password.length === 0" for="password">Password</label>
+                <input type="password" [(ngModel)]="password" class="form-control" id="password">
+
+              </div>
+
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                  <input type="checkbox" checked="checked"/>
+                  <div class="control__indicator"></div>
+                </label>
+                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
+              </div>
+
+              <input (click)="login()" type="button" value="Log In" class="btn btn-block btn-primary">
+
+              <div class="create-account">Don't have an account yet? create one.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
