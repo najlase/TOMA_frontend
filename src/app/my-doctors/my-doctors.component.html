@@ -1,13 +1,57 @@
-<div style="margin-top: 50px;">
-  <h1 *ngIf="doctors.length == 0" style="color: gray;text-align: center;"> No Results Found </h1>
-  <div *ngFor="let doctor of doctors; let i = index" class="doctor">
-    <img [src]="doctor.img" style="height: 300px;
-    margin-left: 50%;
-    transform: translateX(-50%);"/>
-    <div style="padding-left: 20px" class="doctor-info">
-      <div><h5 style="display: inline-block">Name: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.firstName}} {{doctor.lastName}}</h5></div>
-      <div><h5 style="display: inline-block">Specialty: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.specialty}}</h5></div>
-      <div><h5 style="display: inline-block">#Patients: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.patients.length}}</h5></div>
+<div *ngIf="authService.user" class="d-flex" id="wrapper">
+  <div class="border-right" id="sidebar-wrapper">
+    <div class="list-group list-group-flush">
+
+
+      <div class="filter">
+        <div class="input-group mb-2">
+          <input type="text" [(ngModel)]="doctorsFilters.name" name="filterTitle" style="padding-left: 10px;border-radius: 10px 0px 0px 10px; border: 1px solid silver;" id="inlineFormInputGroup" placeholder="Search by doctor">
+          <div class="input-group-prepend">
+            <div class="input-group-text" style="border-radius: 0px 10px 10px 0px;">
+              <fa-icon [icon]="faSearch"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter">
+        <span class="ml-2">Specialty</span>
+        <input list="specialties" class="form-control mr-sm-2" [(ngModel)]="doctorsFilters.specialty" name="filterStartingDate">
+
+        <datalist id="specialties">
+          <option value="Family Physician">
+          <option value="Internal Medicine">
+          <option value="Pediatrician">
+          <option value="Obstetrician/Gynecologist">
+          <option value="Surgeon">
+          <option value="Psychiatrist">
+          <option value="Cardiologist">
+          <option value="Dermatologist">
+        </datalist>
+      </div>
+
+      <button class="btn btn-success" style="margin-top: 20px; background-color: #2987de; border: 0px;" (click)="filter()">Filter</button>
     </div>
   </div>
+
+
+
+  <div class="content">
+    <h3>Doctors</h3>
+    <div style="margin-top: 50px;">
+        <h1 *ngIf="doctors.length == 0" style="color: gray;text-align: center;"> No Results Found </h1>
+        <div *ngFor="let doctor of doctors; let i = index" class="doctor">
+          <img [src]="doctor.img" style="height: 300px;
+    margin-left: 50%;
+    transform: translateX(-50%);"/>
+          <div style="padding-left: 20px" class="doctor-info">
+            <div><h5 style="display: inline-block">Name: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.firstName}} {{doctor.lastName}}</h5></div>
+            <div><h5 style="display: inline-block">Specialty: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.specialty}}</h5></div>
+            <div><h5 style="display: inline-block">#Patients: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.patients.length}}</h5></div>
+          </div>
+          <button *ngIf="doctor.patients.indexOf(authService.user?.profile?._id) !== -1" class="card-btn">Make Appointment</button>
+        </div>
+  </div>
 </div>
+
+

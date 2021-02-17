@@ -18,4 +18,14 @@ export class DoctorsService {
     return this.httpClient.get<DoctorModel[]>('http://localhost:3000/api/doctors',
       {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
   }
+
+  filter(filterData: any): Promise<DoctorModel[]> {
+    return this.httpClient.post<DoctorModel[]>('http://localhost:3000/api/doctors/filter', filterData,
+        {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
+  }
+
+  filterPatientDoctors(patientId: string, filterData: any): Promise<DoctorModel[]> {
+    return this.httpClient.post<DoctorModel[]>('http://localhost:3000/api/patient/' + patientId + '/my-doctors/filter', filterData,
+        {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
+  }
 }

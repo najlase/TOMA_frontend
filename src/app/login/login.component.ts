@@ -11,9 +11,16 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   email = '';
   password = '';
+  showPassword = 0;
+  
   constructor(private authService: AuthService, private router: Router) {
     if (authService.user) {
-      this.router.navigate(['/dashboard']);
+      console.log(authService.user);
+      if (authService.user.role === 'Doctor'){
+        this.router.navigate(['/doctor/dashboard']);
+      } else {
+        this.router.navigate(['/dashboard']);
+      }
     }
   }
 

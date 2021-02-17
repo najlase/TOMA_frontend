@@ -1,11 +1,11 @@
-<div class="d-flex" id="wrapper">
+<div *ngIf="authService.user" class="d-flex" id="wrapper">
   <div class="border-right" id="sidebar-wrapper">
     <div class="list-group list-group-flush">
 
 
       <div class="filter">
         <div class="input-group mb-2">
-          <input type="text" [(ngModel)]="appointmentsFilters.doctorName" name="filterTitle" style="padding-left: 10px;border-radius: 10px 0px 0px 10px; border: 1px solid silver;" id="inlineFormInputGroup" placeholder="Search by doctor">
+          <input type="text" [(ngModel)]="appointmentsFilters.name" name="filterTitle" style="padding-left: 10px;border-radius: 10px 0px 0px 10px; border: 1px solid silver;" id="inlineFormInputGroup" placeholder="Search by doctor">
           <div class="input-group-prepend">
             <div class="input-group-text" style="border-radius: 0px 10px 10px 0px;">
               <fa-icon [icon]="faSearch"></fa-icon>
@@ -33,12 +33,12 @@
 
       <div class="filter">
         <span class="ml-2">Starts after</span>
-        <input type="date" class="form-control mr-sm-2" [(ngModel)]="appointmentsFilters.start_date" name="filterStartingDate">
+        <input type="date" class="form-control mr-sm-2" [(ngModel)]="appointmentsFilters.dateAfter" name="filterStartingDate">
       </div>
 
       <div class="filter">
         <span class="ml-2">Ends before</span>
-        <input type="date" class="form-control mr-sm-2" [(ngModel)]="appointmentsFilters.end_date" name="filterEndDate">
+        <input type="date" class="form-control mr-sm-2" [(ngModel)]="appointmentsFilters.dateBefore" name="filterEndDate">
       </div>
 
       <div class="form-check filter">

@@ -5,11 +5,11 @@ import {AppointmentsService} from '../services/appointments.service';
 import {AuthService} from '../services/auth.service';
 
 @Component({
-  selector: 'app-appointments-list',
-  templateUrl: './appointments-list.component.html',
-  styleUrls: ['./appointments-list.component.css']
+  selector: 'app-doctor-appointments-list',
+  templateUrl: './doctor-appointments-list.component.html',
+  styleUrls: ['./doctor-appointments-list.component.css']
 })
-export class AppointmentsListComponent implements OnInit {
+export class DoctorAppointmentsListComponent implements OnInit {
 
   faStar = faStar;
   faSearch = faSearch;
@@ -20,36 +20,35 @@ export class AppointmentsListComponent implements OnInit {
   appointments: AppointmentModel[] = [];
   isDetailedView: boolean[] = [];
   starredAppointments: string[] = [];
-  appointmentsFilters = {name: '', start_date: null, dateAfter: null, dateBefore: 0, specialty: ''};
+  appointmentsFilters = {patientName: '', start_date: null, end_date: null, reduction: 0, doctor: -1, specialty: ''};
 
   myApplications = [];
   constructor(private appointmentsService: AppointmentsService, public authService: AuthService) {
   }
 
   ngOnInit() {
-    this.appointmentsService.getAllAsPatient().then(res => {
+    this.appointmentsService.getAllAsDoctor().then(res => {
       console.log(res);
       this.appointments = res;
     });
   }
 
   filter(): void{
-    this.appointmentsService.filterAsPatient(this.appointmentsFilters).then(res => {
-      console.log(res);
-      this.appointments = res;
+    // this.appointmentsService.filter(this.appointmentsFilters).then(res => {
+    //   this.appointments = res;
+    // });
+  }
+
+  confirm(index: number): void {
+    this.appointmentsService.confirm(this.appointments[index]._id).then(res => {
+      this.appointments[index].status = res.status;
     });
   }
 
-  claim(index: number): void {
-    // this.appointmentsService.claimAsStudent(this.appointments[index]._id).then(res => {
-    //   this.appointments.splice(index, 1);
-    // });
-  }
-
-  remove(index: number): void {
-    // this.appointmentsService.remove(this.appointments[index]._id).then(res => {
-    //   this.appointments.splice(index, 1);
-    // });
+  reject(index: number): void {
+    this.appointmentsService.reject(this.appointments[index]._id).then(res => {
+      this.appointments[index].status = res.status;
+    });
   }
 
   alreadyApplied(index: number): boolean {

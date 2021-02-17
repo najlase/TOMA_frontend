@@ -24,7 +24,12 @@ export class AuthService {
       this.token = res.token;
       this.user = res.user;
       localStorage.setItem('auth-data', JSON.stringify(res));
-      this.router.navigate(['/dashboard']);
+      console.log(this.user);
+      if (this.user?.role === 'Doctor'){
+        this.router.navigate(['/doctor/dashboard']);
+      } else {
+        this.router.navigate(['/dashboard']);
+      }
     });
   }
 

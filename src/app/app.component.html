@@ -4,7 +4,11 @@
   </a>
 
 
-  <div style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/dashboard']" fragment="education">
+  <div *ngIf="authService.user.role === 'Patient'" style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/dashboard']" fragment="education">
+    Dashboard
+  </div>
+
+  <div *ngIf="authService.user.role === 'Doctor'" style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctor/dashboard']" fragment="education">
     Dashboard
   </div>
 
@@ -12,7 +16,7 @@
     My Doctors
   </div>
 
-  <div *ngIf="authService.user.role === 'Patientsh'" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctors']" fragment="education">
+  <div *ngIf="authService.user.role === 'Patient'" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctors']" fragment="education">
     All Doctors
   </div>
 
@@ -24,6 +28,7 @@
     Profile
   </div>
 
+  <div style="position: absolute; right: 150px; "><img class="rounded-circle mt-5" style="height: 50px; margin-top: 0px !important;margin-right: 10px;" [src]="authService.user?.profile?.img"><span style="color: white;">{{authService.user?.profile?.firstName}} {{authService.user?.profile?.lastName}}</span></div>
   <div style="position: absolute; right: 0px; padding-left: 30px; height: 100%; margin-right: 0px; padding-top: 17px; padding-right: 30px; background: #1d6fbb;" class="navbar-item" (click)="authService.logout()">
     Log out
   </div>

@@ -1,8 +1,10 @@
-<div class="content">
-  <div >
-    <div class="row" style="width: 100%;">
-      <div class="col-md-7">
-        <img src="../../assets/images/login-img.png" alt="Image" class="img-fluid">
+<div class="content" style="overflow: hidden;">
+  <div style="height: 100%" >
+    <div class="row" style="width: 100%;height: 100%">
+      <div class="col-md-7" style="height: 100%;">
+        <img src="../../assets/images/login-img.png" alt="Image" class="img-fluid" style="    max-height: 100%;
+        margin-left: 50%;
+        transform: translateX(-50%);">
       </div>
       <div class="col-md-4 contents">
         <div class="row justify-content-center" style="margin-top: 50%;transform: translateY(-50%);">
@@ -20,7 +22,10 @@
               </div>
               <div class="form-group last mb-4">
                 <label *ngIf="password.length === 0" for="password">Password</label>
-                <input type="password" [(ngModel)]="password" class="form-control" id="password">
+                <input [type]="showPassword ? 'text' : 'password' " [(ngModel)]="password" class="form-control" id="password">
+
+<!-- An element to toggle between password visibility -->
+<input type="checkbox" [(ngModel)]="showPassword"> Show Password
 
               </div>
 

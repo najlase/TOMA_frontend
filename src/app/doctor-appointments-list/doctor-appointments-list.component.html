@@ -1,0 +1,69 @@
+<div *ngIf="authService.user" class="d-flex" id="wrapper">
+  <div class="border-right" id="sidebar-wrapper">
+    <div class="list-group list-group-flush">
+
+
+      <div class="filter">
+        <div class="input-group mb-2">
+          <input type="text" [(ngModel)]="appointmentsFilters.patientName" name="filterTitle" style="padding-left: 10px;border-radius: 10px 0px 0px 10px; border: 1px solid silver;" id="inlineFormInputGroup" placeholder="Search by patient">
+          <div class="input-group-prepend">
+            <div class="input-group-text" style="border-radius: 0px 10px 10px 0px;">
+              <fa-icon [icon]="faSearch"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter">
+        <span class="ml-2">Starts after</span>
+        <input type="date" class="form-control mr-sm-2" [(ngModel)]="appointmentsFilters.start_date" name="filterStartingDate">
+      </div>
+
+      <div class="filter">
+        <span class="ml-2">Ends before</span>
+        <input type="date" class="form-control mr-sm-2" [(ngModel)]="appointmentsFilters.end_date" name="filterEndDate">
+      </div>
+
+      <div class="form-check filter">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          Show starred only
+        </label>
+      </div>
+
+      <button class="btn btn-success" style="margin-top: 20px; background-color: #2987de; border: 0px;" (click)="filter()">Filter</button>
+    </div>
+  </div>
+
+
+
+  <div class="content">
+    <h3>Appointments</h3>
+    <div style="margin-top: 50px;">
+      <h1 *ngIf="appointments.length == 0" style="color: gray;text-align: center;"> No Results Found </h1>
+      <div *ngFor="let appointment of appointments; let i = index" class="appointment">
+        <div style="display: inline-block; width: 300px; height: 200px; border-right: 1px solid #efefef;">
+          <img [src]="appointment.patient.img" style="max-height: 200px; max-width: 300px; margin-left: 50%; transform: translateX(-50%)"/>
+        </div>
+        <div style="padding-bottom: 20px; padding-top: 20px;inline-block" class="appointment-info">
+          <div class="progress-container" (click)="star(i)">
+            <fa-icon *ngIf="isStarred(i)" [icon]="faStar" style="color: gold; font-size: 20px"></fa-icon>
+            <fa-icon *ngIf="!isStarred(i)" [icon]="faStar" style="color: silver; font-size: 20px"></fa-icon>
+          </div>
+          <h5>{{appointment.patient.firstName}} {{appointment.patient.lastName}}</h5>
+          <h6 class="deadline">Date: {{appointment.date|date}}</h6>
+          <h6 style="margin-top: 10px;">Status: <span style="font-weight: lighter; margin-left: 5px;"><i class="fa fa-circle status-{{appointment.status}}"></i> {{appointment.status}}</span></h6>
+          <div *ngIf="authService.user?.role === 'Patient'">
+            <button class="appointment-card-btn">Reschedule</button>
+          </div>
+          <div *ngIf="appointment.status === 'pending'">
+            <div *ngIf="authService.user?.role === 'Doctor'"> <button class="appointment-card-btn" style="margin-right: 120px; background-color: green" (click)="confirm(i)">Accept</button> </div>
+            <div *ngIf="authService.user?.role === 'Doctor'"> <button class="appointment-card-btn" (click)="reject(i)">Reject</button> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
