@@ -9,16 +9,16 @@
           <h4 class="text-right">Profile</h4>
         </div>
         <div class="row mt-2">
-          <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-          <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+          <div class="col-md-6"><label class="labels">First name</label><input [(ngModel)]="firstName" type="text" class="form-control" placeholder="first name" value=""></div>
+          <div class="col-md-6"><label class="labels">Last name</label><input [(ngModel)]="lastName" type="text" class="form-control" value="" placeholder="surname"></div>
 
-          <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+          <div class="col-md-12"><label class="labels">Email</label><input [(ngModel)]="email" type="text" class="form-control" placeholder="enter email id" value=""></div>
         </div>
         <div class="row mt-3">
-          <div class="col-md-6"><label class="labels">Password</label><input type="text" class="form-control" placeholder="Password" value=""></div>
-          <div class="col-md-6"><label class="labels">Confirm Password</label><input type="text" class="form-control" value="" placeholder="Confirm Password"></div>
+          <div class="col-md-6"><label class="labels">Password</label><input [(ngModel)]="password" type="text" class="form-control" placeholder="Password" value=""></div>
+          <div class="col-md-6"><label class="labels">Confirm Password</label><input [(ngModel)]="confirmedPassword" type="text" class="form-control" value="" placeholder="Confirm Password"></div>
         </div>
-        <div class="mt-5 text-center"><button style="background-color: #2987de; border: 0px" class="btn btn-primary" type="button">Save Profile</button></div>
+        <div class="mt-5 text-center"><button style="background-color: #2987de; border: 0px" class="btn btn-primary" type="button" (click)="saveProfile()">Save Profile</button></div>
       </div>
     </div>
   </div>
