@@ -1,24 +1,51 @@
 <div *ngIf="authService.user" class="container rounded bg-white mt-5 mb-5">
   <div class="row">
     <div class="col-md-4 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" style="height: 200px;" [src]="authService.user?.profile?.img"><span class="font-weight-bold">{{authService.user?.profile?.firstName}} {{authService.user?.profile?.lastName}}</span><span class="text-black-50">{{authService.user?.email}}</span><span> </span></div>
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="rounded-circle mt-5" style="height: 200px;" [src]="authService.user?.profile?.img">
+        <div>
+          <button style="border: 0px; margin-top: 10px;" class="btn btn-secondary btn-sm" type="button"
+            (click)="showPictureUpload = !showPictureUpload">Upload local picture</button>
+          <p
+            style="display: inline-block; vertical-align: middle; margin-bottom: 0px !important; height: 100%; padding-top: 9px; padding-right: 5px; padding-left: 5px;">
+            OR </p>
+          <button style="border: 0px; margin-top: 10px;" class="btn btn-secondary btn-sm" type="button"
+            (click)="showPictureLink = !showPictureLink">Insert picture link</button>
+        </div>
+        <input *ngIf="showPictureUpload" (change)="handleFileInput($event)" style="margin-top: 5px"
+          type="file" class="form-control" placeholder="profile picture" value="">
+        <input *ngIf="showPictureLink" [(ngModel)]="profilePicture" style="margin-top: 5px" type="text"
+          class="form-control" placeholder="profile picture" value="">
+        <span style="margin-top: 5px" class="font-weight-bold">{{authService.user?.profile?.firstName}}
+          {{authService.user?.profile?.lastName}}</span><span
+          class="text-black-50">{{authService.user?.email}}</span><span> </span>
+      </div>
+
     </div>
     <div class="col-md-8 border-right">
       <div class="p-3 py-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="text-right">Profile</h4>
         </div>
+        <div style="color: green">{{success}}</div>
         <div class="row mt-2">
-          <div class="col-md-6"><label class="labels">First name</label><input [(ngModel)]="firstName" type="text" class="form-control" placeholder="first name" value=""></div>
-          <div class="col-md-6"><label class="labels">Last name</label><input [(ngModel)]="lastName" type="text" class="form-control" value="" placeholder="surname"></div>
+          <div class="col-md-6"><label class="labels">First name</label><input [(ngModel)]="firstName" type="text"
+              class="form-control" placeholder="first name" value=""></div>
+          <div class="col-md-6"><label class="labels">Last name</label><input [(ngModel)]="lastName" type="text"
+              class="form-control" value="" placeholder="surname"></div>
 
-          <div class="col-md-12"><label class="labels">Email</label><input [(ngModel)]="email" type="text" class="form-control" placeholder="enter email id" value=""></div>
+          <div class="col-md-12"><label class="labels">Email</label><input [(ngModel)]="email" type="text"
+              class="form-control" placeholder="enter email id" value=""></div>
         </div>
         <div class="row mt-3">
-          <div class="col-md-6"><label class="labels">Password</label><input [(ngModel)]="password" type="text" class="form-control" placeholder="Password" value=""></div>
-          <div class="col-md-6"><label class="labels">Confirm Password</label><input [(ngModel)]="confirmedPassword" type="text" class="form-control" value="" placeholder="Confirm Password"></div>
+          <div class="col-md-6"><label class="labels">Password</label><input [(ngModel)]="password" type="text"
+              class="form-control" placeholder="Password" value=""></div>
+          <div class="col-md-6"><label class="labels">Confirm Password</label><input [(ngModel)]="confirmedPassword"
+              type="text" class="form-control" value="" placeholder="Confirm Password"></div>
         </div>
-        <div class="mt-5 text-center"><button style="background-color: #2987de; border: 0px" class="btn btn-primary" type="button" (click)="saveProfile()">Save Profile</button></div>
+        <div style="color: red">{{error}}</div>
+        <div class="mt-5 text-center"><button style="background-color: #2987de; border: 0px" class="btn btn-primary"
+            type="button" (click)="saveProfile()">Save Profile</button></div>
       </div>
     </div>
   </div>
