@@ -28,7 +28,7 @@
     Profile
   </div>
 
-  <div style="position: absolute; right: 150px; "><img class="rounded-circle mt-5" style="height: 50px; margin-top: 0px !important;margin-right: 10px;" [src]="authService.user?.profile?.img"><span style="color: white;">{{authService.user?.profile?.firstName}} {{authService.user?.profile?.lastName}}</span></div>
+  <div [routerLink]="['/profile']" style="position: absolute; right: 150px; "><img class="rounded-circle mt-5" style="height: 50px; margin-top: 0px !important;margin-right: 10px;" [src]="authService.user?.profile?.img"><span style="color: white;">{{authService.user?.profile?.firstName}} {{authService.user?.profile?.lastName}}</span></div>
   <div style="position: absolute; right: 0px; padding-left: 30px; height: 100%; margin-right: 0px; padding-top: 17px; padding-right: 30px; background: #1d6fbb;" class="navbar-item" (click)="authService.logout()">
     Log out
   </div>
