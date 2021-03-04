@@ -10,6 +10,7 @@ export interface UserModel {
     lastName: string;
     img: string;
     birthday: Date;
+    connectionRequests: any[];
   };
   doctors?: string[];
   patients?: string[];

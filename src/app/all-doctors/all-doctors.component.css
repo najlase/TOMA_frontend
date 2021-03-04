@@ -8,6 +8,7 @@
     margin-bottom: 20px;
     padding-bottom: 20px;
     cursor: pointer;
+    position: relative;
     display: inline-block;
 }
 
@@ -82,4 +83,21 @@
 .success {
     background-color: #209a45;
     color: white;
+}
+
+.warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+.rmConn {
+    background: white;
+    color: red;
+    position: absolute;
+    top: -15px;
+    box-shadow: none;
+    right: -8px;
+    border: 1px solid red;
+    padding: 10px;
+    padding: 4px 10px;
 }

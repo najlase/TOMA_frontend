@@ -51,8 +51,17 @@
                         <div><h5 style="display: inline-block">#Patients: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.patients.length}}</h5></div>
                     </div>
                     <div>
-                        <button *ngIf="doctor.patients.indexOf(authService.user.profile?._id) !== -1" class="card-btn success" (click)="sendConnectionRequest(i)"><fa-icon [icon]="faCheck"></fa-icon> Connected</button>
-                        <button *ngIf="doctor.patients.indexOf(authService.user.profile?._id) === -1" class="card-btn" (click)="sendConnectionRequest(i)"><fa-icon [icon]="faUserPlus"></fa-icon> Connect</button>
+
+                        <div *ngIf="doctorConnectionState[i] == 2">
+                            <button class="card-btn success"><fa-icon [icon]="faCheck"></fa-icon> Connected</button>
+                            <button class="card-btn warning rmConn"><fa-icon [icon]="faTimes"></fa-icon></button>
+                        </div>
+
+                        <div *ngIf="doctorConnectionState[i] == 1">
+                            <button class="card-btn warning"><fa-icon [icon]="faSpinner"></fa-icon> Pending</button>
+                            <button class="card-btn warning rmConn" (click)="removeConnectionRequest(i)"><fa-icon [icon]="faTimes"></fa-icon></button>
+                        </div>
+                        <button *ngIf="doctorConnectionState[i] == 0" class="card-btn" (click)="connect(i)"><fa-icon [icon]="faUserPlus"></fa-icon> Connect</button>
                     </div>
                 </div>
             </div>

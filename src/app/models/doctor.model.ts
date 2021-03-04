@@ -6,4 +6,5 @@ export interface DoctorModel {
   birthday: Date;
   specialty: string;
   patients: any[];
+  connectionRequests: any[];
 }
