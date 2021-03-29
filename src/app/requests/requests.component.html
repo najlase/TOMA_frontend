@@ -1,0 +1,17 @@
+<div *ngFor="let invitation of invitations" class="dropdown-item">
+    <img height="70px" width="70px" [src]="getUser(invitation).img" />
+    <div class="username">
+        {{getUser(invitation).firstName}} {{getUser(invitation).lastName}}
+    </div>
+    <div *ngIf="authService.user?.role == 'Doctor'" style="display: inline-block; width: 100%;"> 
+        <i style="margin-right: 5px; margin-left: 10px; font-size: 20px; color: green; cursor: pointer;" class="far fa-check-circle"></i>
+        <i style="font-size: 20px; color: red; cursor: pointer;" class="far fa-times-circle"></i>
+    </div>
+    <div *ngIf="authService.user?.role == 'Patient'" style="display: inline-block;margin-left: 10px; width: 100%;"> 
+        <i *ngIf="invitation.state == 'Accepted'" style="font-size: 20px; color: green; cursor: pointer;" class="far fa-check-circle"></i>
+        <i *ngIf="invitation.state == 'Rejected'" style="font-size: 20px; color: red; cursor: pointer;" class="far fa-times-circle"></i>
+        <i *ngIf="invitation.state == 'Pending'" style="font-size: 20px; color: orange; cursor: pointer;" class="fas fa-spinner"></i>
+    </div>
+   <div style="color: silver; font-style: italic; position: absolute; right: 10px; top: 62px;"> {{invitation.date |date}} </div>
+    <hr/>
+</div>

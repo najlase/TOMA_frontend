@@ -1,0 +1,9 @@
+.dropdown-item {
+    padding-right: 10px;
+    position: relative;
+}
+
+.username {
+    display: inline-block;
+    width: calc(100% - 100px);
+}

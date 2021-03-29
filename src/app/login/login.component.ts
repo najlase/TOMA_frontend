@@ -10,8 +10,14 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   email = '';
+  firstName = '';
+  lastName = '';
+  birthday = new Date();
   password = '';
+  confirmPassword = '';
   showPassword = 0;
+  isCreate = false;
+  isNext = false;
   
   constructor(private authService: AuthService, private router: Router) {
     if (authService.user) {
@@ -30,5 +36,15 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.email, this.password);
   }
+  createAccount(): void {
+    if (this.password == this.confirmPassword) 
+      this.authService.createAccount(this.email, this.password, this.firstName, this.lastName, this.birthday);
+  }
 
+  loadCreateForm(): void {
+    this.isCreate = true;
+    this.email = '';
+    this.password = '';
+    this.confirmPassword = '';
+  }
 }

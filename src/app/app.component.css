@@ -24,6 +24,11 @@
   cursor: pointer;
 }
 
-.navbar-item.active{
+.navbar-item.active {
   border-bottom: 2px solid white;
+}
+
+.requests-container {
+  right: -25px;
+  left: unset !important;
 }

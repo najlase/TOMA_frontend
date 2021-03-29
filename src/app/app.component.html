@@ -28,7 +28,27 @@
     Profile
   </div>
 
-  <div [routerLink]="['/profile']" style="position: absolute; right: 150px; "><img class="rounded-circle mt-5" style="height: 50px; margin-top: 0px !important;margin-right: 10px;" [src]="authService.user?.profile?.img"><span style="color: white;">{{authService.user?.profile?.firstName}} {{authService.user?.profile?.lastName}}</span></div>
+  <div [routerLink]="['/profile']" style="position: absolute; right: 202px; "><img class="rounded-circle mt-5" style="height: 50px; margin-top: 0px !important;margin-right: 10px;" [src]="authService.user?.profile?.img"><span style="color: white;">{{authService.user?.profile?.firstName}} {{authService.user?.profile?.lastName}}</span></div>
+
+  <div *ngIf="authService.user.role === 'Doctor'" class="dropdown" style="position: absolute; right: 150px;color: white;font-size: 23px " >
+    <div type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-user-check"></i>    
+    </div>
+    <div class="dropdown-menu requests-container" aria-labelledby="dropdownMenuButton">
+      <app-requests></app-requests>
+    </div>
+  </div>
+
+  <div *ngIf="authService.user.role === 'Patient'" class="dropdown" style="position: absolute; right: 150px;color: white;font-size: 23px " >
+    <div type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-user-plus"></i>    
+    </div>
+    <div class="dropdown-menu requests-container" aria-labelledby="dropdownMenuButton">
+      <app-requests></app-requests>
+    </div>
+  </div>
+
+
   <div style="position: absolute; right: 0px; padding-left: 30px; height: 100%; margin-right: 0px; padding-top: 17px; padding-right: 30px; background: #1d6fbb;" class="navbar-item" (click)="authService.logout()">
     Log out
   </div>

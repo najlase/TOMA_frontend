@@ -19,6 +19,16 @@ export class AuthService {
     }
   }
 
+  createAccount(email: string, password: string, firstName: string, lastName: string, birthday: Date): void {
+    this.httpClient.post<any>('http://localhost:3000/api/register', {email, password, firstName, lastName, birthday}).toPromise().then(res => {
+      this.token = res.token;
+      this.user = res.user;
+      localStorage.setItem('auth-data', JSON.stringify(res));
+      console.log(this.user);
+      this.router.navigate(['/dashboard']);
+    });
+  }
+
   login(email: string, password: string): void {
     this.httpClient.post<any>('http://localhost:3000/api/login', {email, password}).toPromise().then(res => {
       this.token = res.token;
