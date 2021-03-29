@@ -4,27 +4,31 @@
   </a>
 
 
-  <div *ngIf="authService.user.role === 'Patient'" style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/dashboard']" fragment="education">
+  <div *ngIf="authService.user.role === 'Patient'" style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/dashboard']">
     Dashboard
   </div>
 
-  <div *ngIf="authService.user.role === 'Doctor'" style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctor/dashboard']" fragment="education">
+  <div *ngIf="authService.user.role === 'Doctor'" style="margin-left: calc(20% - 245px);" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctor/dashboard']">
     Dashboard
   </div>
 
-  <div *ngIf="authService.user.role === 'Patient'" class="navbar-item" routerLinkActive="active" [routerLink]="['/my-doctors']" fragment="education">
+  <div *ngIf="authService.user.role === 'Patient'" class="navbar-item" routerLinkActive="active" [routerLink]="['/my-doctors']">
     My Doctors
   </div>
 
-  <div *ngIf="authService.user.role === 'Patient'" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctors']" fragment="education">
+  <div *ngIf="authService.user.role === 'Patient'" class="navbar-item" routerLinkActive="active" [routerLink]="['/doctors']">
     All Doctors
   </div>
 
-  <div *ngIf="authService.user.role === 'Doctor'" class="navbar-item" routerLinkActive="active" [routerLink]="['/my-patients']" fragment="education">
+  <div *ngIf="authService.user.role === 'Doctor'" class="navbar-item" routerLinkActive="active" [routerLink]="['/my-patients']">
     My Patients
   </div>
 
-  <div class="navbar-item" routerLinkActive="active" [routerLink]="['/profile']" fragment="education">
+  <div *ngIf="authService.user.role === 'Doctor'" class="navbar-item" routerLinkActive="active" [routerLink]="['/archieved-patients']">
+    Archieved Patients
+  </div>
+
+  <div class="navbar-item" routerLinkActive="active" [routerLink]="['/profile']">
     Profile
   </div>
 

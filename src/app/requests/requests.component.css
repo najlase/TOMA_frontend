@@ -3,7 +3,12 @@
     position: relative;
 }
 
-.username {
+.patient-username {
+    display: inline-block;
+    width: calc(100% - 125px);
+}
+
+.doctor-username {
     display: inline-block;
     width: calc(100% - 100px);
 }

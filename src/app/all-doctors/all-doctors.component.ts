@@ -65,4 +65,10 @@ export class AllDoctorsComponent implements OnInit {
     });
   }
 
+  public removeConnection(index: number): void {
+    this.connectionService.removeConnection(this.doctors[index]._id).then(_ => {
+      this.doctorConnectionState[index] = 0;
+    });
+  }
+
 }

@@ -54,7 +54,7 @@
 
                         <div *ngIf="doctorConnectionState[i] == 2">
                             <button class="card-btn success"><fa-icon [icon]="faCheck"></fa-icon> Connected</button>
-                            <button class="card-btn warning rmConn"><fa-icon [icon]="faTimes"></fa-icon></button>
+                            <button class="card-btn warning rmConn" (click)="removeConnection(i)" ><fa-icon [icon]="faTimes"></fa-icon></button>
                         </div>
 
                         <div *ngIf="doctorConnectionState[i] == 1">

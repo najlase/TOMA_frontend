@@ -1,0 +1,19 @@
+<div class="d-flex" id="wrapper">
+  
+    <div class="content">
+      <h3>Archieved Patients</h3>
+      <div style="margin-top: 50px;">
+          <h1 *ngIf="archieves.length == 0" style="color: gray;text-align: center;"> No Results Found </h1>
+          <div *ngFor="let archieve of archieves; let i = index" class="patient">
+            <img [src]="archieve.patient.img" style="height: 250px; margin-left: 50%; transform: translateX(-50%); margin-top: 10px; margin-bottom: 10px;"/>
+            <div style="padding-left: 20px" class="patient-info">
+              <div><h5 style="display: inline-block">Name: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{archieve.patient.firstName}} {{archieve.patient.lastName}}</h5></div>
+              <div><h5 style="display: inline-block">Birthday: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{archieve.patient.birthday | date}}</h5></div>
+              <div><h5 style="display: inline-block">Description: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</h5></div>
+            </div>
+          </div>
+    </div>
+  </div>
+  
+  
+  

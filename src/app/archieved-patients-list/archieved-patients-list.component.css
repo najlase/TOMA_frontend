@@ -1,0 +1,86 @@
+.patient {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 25%;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .patient .deadline {
+    opacity: 0.6;
+    margin: 0;
+    letter-spacing: 1px;
+    /*text-transform: uppercase;*/
+  }
+  
+  .patient h2 {
+    letter-spacing: 1px;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .patient-preview {
+    background-color: #f7f7f7;
+    padding: 15px;
+    width: 20%;
+  }
+  
+  .patient-preview a {
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    opacity: 0.6;
+    margin-top: 30px;
+    text-decoration: none;
+  }
+  
+  .patient-info {
+    border-top: 1px solid silver;
+    padding-top: 10px;
+    position: relative;
+    width: 100%
+  }
+  
+  .content {
+    width: 100%;
+    padding: 50px;
+    overflow: auto;
+  }
+  
+  #sidebar-wrapper {
+    width: 20%;
+    height: 100%;
+    background-color: white;
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  #wrapper {
+    height: calc(100% - 70px);
+  }
+  
+  .card-btn {
+    background-color: #2987de;
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 25px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .success {
+    background-color: #209a45;
+    color: white;
+  }
+  

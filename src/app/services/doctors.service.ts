@@ -24,6 +24,16 @@ export class DoctorsService {
       {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
   }
 
+  getArchievedPatients(): Promise<any[]> {
+    return this.httpClient.get<any[]>('http://localhost:3000/api/doctor/patients/archieved',
+      {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
+  }
+
+  getPatients(): Promise<any[]> {
+    return this.httpClient.get<any[]>('http://localhost:3000/api/doctor/my-patients',
+      {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
+  }
+
   filter(filterData: any): Promise<DoctorModel[]> {
     return this.httpClient.post<DoctorModel[]>('http://localhost:3000/api/doctors/filter', filterData,
         {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();

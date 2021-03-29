@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { DoctorAppointmentsListComponent } from './doctor-appointments-list/doctor-appointments-list.component';
 import { AllDoctorsComponent } from './all-doctors/all-doctors.component';
 import { RequestsComponent } from './requests/requests.component';
+import { ArchievedPatientsListComponent } from './archieved-patients-list/archieved-patients-list.component';
+import { MyPatientsComponent } from './my-patients/my-patients.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RequestsComponent } from './requests/requests.component';
     LoginComponent,
     DoctorAppointmentsListComponent,
     AllDoctorsComponent,
-    RequestsComponent
+    RequestsComponent,
+    ArchievedPatientsListComponent,
+    MyPatientsComponent
   ],
   imports: [
     BrowserModule,
