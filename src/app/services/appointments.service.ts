@@ -19,6 +19,12 @@ export class AppointmentsService {
         {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
   }
 
+  createAppointment(appointmentInfo: any): Promise<any> {
+    return this.httpClient.post<any>('http://localhost:3000/api/appointments/make', appointmentInfo,
+        {headers: { Authorization: 'Bearer ' + this.authService.token}}).toPromise();
+  }
+  
+
   getAllAsDoctor(): Promise<AppointmentModel[]> {
     console.log(this.authService.user);
     return this.httpClient.get<any>('http://localhost:3000/api/doctor/' + this.authService.user?.profile?._id + '/appointments',

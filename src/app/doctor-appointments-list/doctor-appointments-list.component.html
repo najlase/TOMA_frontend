@@ -60,6 +60,10 @@
             <div *ngIf="authService.user?.role === 'Doctor'"> <button class="appointment-card-btn" style="margin-right: 120px; background-color: green" (click)="confirm(i)">Accept</button> </div>
             <div *ngIf="authService.user?.role === 'Doctor'"> <button class="appointment-card-btn" (click)="reject(i)">Reject</button> </div>
           </div>
+          <div *ngIf="appointment.note">
+            <h6 style="margin-top: 10px; display: inline-block;">Note:</h6>
+            {{appointment.note}}
+          </div>
         </div>
       </div>
     </div>

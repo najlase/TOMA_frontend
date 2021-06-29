@@ -5,7 +5,9 @@
 
       <div class="filter">
         <div class="input-group mb-2">
-          <input type="text" [(ngModel)]="doctorsFilters.name" name="filterTitle" style="padding-left: 10px;border-radius: 10px 0px 0px 10px; border: 1px solid silver;" id="inlineFormInputGroup" placeholder="Search by doctor">
+          <input type="text" [(ngModel)]="doctorsFilters.name" name="filterTitle"
+            style="padding-left: 10px;border-radius: 10px 0px 0px 10px; border: 1px solid silver;"
+            id="inlineFormInputGroup" placeholder="Search by doctor">
           <div class="input-group-prepend">
             <div class="input-group-text" style="border-radius: 0px 10px 10px 0px;">
               <fa-icon [icon]="faSearch"></fa-icon>
@@ -16,7 +18,8 @@
 
       <div class="filter">
         <span class="ml-2">Specialty</span>
-        <input list="specialties" class="form-control mr-sm-2" [(ngModel)]="doctorsFilters.specialty" name="filterStartingDate">
+        <input list="specialties" class="form-control mr-sm-2" [(ngModel)]="doctorsFilters.specialty"
+          name="filterStartingDate">
 
         <datalist id="specialties">
           <option value="Family Physician">
@@ -30,7 +33,8 @@
         </datalist>
       </div>
 
-      <button class="btn btn-success" style="margin-top: 20px; background-color: #2987de; border: 0px;" (click)="filter()">Filter</button>
+      <button class="btn btn-success" style="margin-top: 20px; background-color: #2987de; border: 0px;"
+        (click)="filter()">Filter</button>
     </div>
   </div>
 
@@ -39,19 +43,62 @@
   <div class="content">
     <h3>Doctors</h3>
     <div style="margin-top: 50px;">
-        <h1 *ngIf="doctors.length == 0" style="color: gray;text-align: center;"> No Results Found </h1>
-        <div *ngFor="let doctor of doctors; let i = index" class="doctor">
-          <img [src]="doctor.img" style="height: 300px;
+      <h5 *ngIf="message" style="color: green;">{{message}}</h5>
+      <h5 *ngIf="error" style="color: red;">{{error}}</h5>
+      <h1 *ngIf="doctors.length == 0" style="color: gray;text-align: center;"> No Results Found </h1>
+      <div *ngFor="let doctor of doctors; let i = index" class="doctor">
+        <img [src]="doctor.img" style="height: 300px;
     margin-left: 50%;
-    transform: translateX(-50%);"/>
-          <div style="padding-left: 20px" class="doctor-info">
-            <div><h5 style="display: inline-block">Name: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.firstName}} {{doctor.lastName}}</h5></div>
-            <div><h5 style="display: inline-block">Specialty: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.specialty}}</h5></div>
-            <div><h5 style="display: inline-block">#Patients: </h5> <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.patients.length}}</h5></div>
+    transform: translateX(-50%);" />
+        <div style="padding-left: 20px" class="doctor-info">
+          <div>
+            <h5 style="display: inline-block">Name: </h5>
+            <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.firstName}}
+              {{doctor.lastName}}</h5>
           </div>
-          <button *ngIf="doctor.patients.indexOf(authService.user?.profile?._id) !== -1" class="card-btn">Make Appointment</button>
+          <div>
+            <h5 style="display: inline-block">Specialty: </h5>
+            <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.specialty}}</h5>
+          </div>
+          <div>
+            <h5 style="display: inline-block">#Patients: </h5>
+            <h5 style="display: inline-block; font-weight: lighter; margin-left: 5px;">{{doctor.patients.length}}</h5>
+          </div>
         </div>
+        <button (click)="appointmentInfo.doctorId=doctor._id" *ngIf="doctor.patients.indexOf(authService.user?.profile?._id) !== -1" class="card-btn"
+          data-toggle="modal" data-target="#exampleModal">
+          Make Appointment
+        </button>
+      </div>
+    </div>
   </div>
-</div>
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Appointment scheduling</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label for="appointment-date" style="margin-right: 20px;">Appointment date</label>
+            <input id="appointment-date" type="datetime-local" [(ngModel)]="appointmentInfo.date" />
+          </div>
+          <div>
+            <label for="appointment-note" style="margin-right: 20px;">Appointment note</label>
+            <textarea id="appointment-note" [(ngModel)]="appointmentInfo.note" style="margin-top: 20px; margin-bottom: 0px; height: 48px; width: 300px;"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="confirm()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>

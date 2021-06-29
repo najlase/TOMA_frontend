@@ -4,4 +4,5 @@ export interface AppointmentModel {
   patient: any;
   date: Date;
   status: string;
+  note: string;
 }

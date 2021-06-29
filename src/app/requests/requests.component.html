@@ -1,6 +1,7 @@
 <div *ngFor="let invitation of invitations" class="dropdown-item">
     <div *ngIf="authService.user?.role == 'Doctor'">
-        <img height="70px" width="70px" [src]="invitation.patient.img" />
+        <img style="    margin-right: 10px;
+        border-radius: 100%;" height="70px" width="70px" [src]="invitation.patient.img" />
         <div class="patient-username">
             {{invitation.patient.firstName}} {{invitation.patient.lastName}}
         </div>
@@ -11,7 +12,8 @@
         </div>
     </div>
     <div *ngIf="authService.user?.role == 'Patient'">
-        <img height="70px" width="70px" [src]="invitation.doctor.img" />
+        <img style="    margin-right: 10px;
+        border-radius: 100%;" height="70px" width="70px" [src]="invitation.doctor.img" />
         <div class="doctor-username">
             {{invitation.doctor.firstName}} {{invitation.doctor.lastName}}
         </div>

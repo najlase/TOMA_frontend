@@ -70,6 +70,10 @@
             <h5>{{appointment.doctor.firstName}} {{appointment.doctor.lastName}}</h5>
             <h6 class="deadline">Date: {{appointment.date|date}}</h6>
             <h6 style="margin-top: 10px;">Status: <span style="font-weight: lighter; margin-left: 5px;"><i class="fa fa-circle status-{{appointment.status}}"></i> {{appointment.status}}</span></h6>
+            <div *ngIf="appointment.note">
+              <h6 style="margin-top: 10px; display: inline-block;">Note:</h6>
+              {{appointment.note}}
+            </div>
             <div *ngIf="authService.user?.role === 'Patient'">
               <button class="appointment-card-btn" (click)="claim(i)">Reschedule</button>
             </div>
